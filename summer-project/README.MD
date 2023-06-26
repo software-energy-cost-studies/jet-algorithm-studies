@@ -11,7 +11,7 @@ The code in this repository is based on the following components:
 2. **excitedquarks-rivet**: The rivet analysis code for excited quarks, developed by MCR EXCITED QUARKS, is utilized in this project. The code repository can be found at [https://github.com/DarkJets-hep/excitedquarks-rivet](https://github.com/DarkJets-hep/excitedquarks-rivet).
 
 ## Dataset
-For comparison purposes, this project employs Graeme Stewart's original dataset. The dataset used for analysis can be accessed from the following location: [link to Graeme's original dataset](https://example.com/original-dataset).
+For comparison purposes, this project employs Graeme Stewart's original dataset. The dataset used for analysis can be accessed from the following location: [link to Graeme's original dataset](https://github.com/graeme-a-stewart/antikt-python/tree/main/data).
 
 ## Prerequisites
 To run this project, you need to have the `hepstore/rivet-pythia` Singularity container installed on your system. This container provides the required environment for executing the code.
