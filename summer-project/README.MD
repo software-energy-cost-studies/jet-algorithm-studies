@@ -57,13 +57,13 @@ To use the analysis code:
    rivet-build <name of file>
 2. Run the analysis `PtPlot` or `MULTIPLOT`:
    ```bash
-   rivet -a <analysis name> --pwd <file name to be analysed>```
+   rivet -a <analysis name> --pwd <file name to be analysed>
 
 To generate comparing plots:
 1. Rename the yoda files for the original events from Graeme to `OriginalData.yoda`, and then re-run the analysis on the generated dataset. 
 2. Based on the analysis used, the `plotting.py` file will need to be changed to reflect the proper histogram name.
 3. Run the plotter using:
    ```bash
-   python3 plotting.py```
+   python3 plotting.py
 
 Please note that the commands provided assume a Unix-like environment. Make sure you have the necessary dependencies installed for successful compilation and execution.
