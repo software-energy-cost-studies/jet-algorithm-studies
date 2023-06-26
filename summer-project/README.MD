@@ -39,7 +39,7 @@ Detailed instructions on how to use the code can be found in the respective repo
 
 To install use:
    ```bash
-   singularity pull docker://hepstore/rivet-pythia
+   singularity pull docker://hepstore/rivet-pythia```
 
 To generate events:
 1. Compile the `generator.cc` programme:
