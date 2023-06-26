@@ -40,3 +40,27 @@ Detailed instructions on how to use the code can be found in the respective repo
 To install use:
    ```bash
    singularity pull docker://hepstore/rivet-pythia
+
+To generate events:
+1. Compile the `generator.cc` programme:
+   ```bash
+   g++ -o generate-events generator.cc -L./pythia/include -lpythia8 -lHepMC3
+2. Run the programme:
+   ```bash
+   ./generate-events
+This will generate a new file named `events.hepmc3`.
+
+To use the analysis code:
+1. Compile using rivet, there are 2 options: `ptanalysor.cc` for only pt-plots or `analysor.cc` for multiple plots:
+   ```bash
+   rivet-build <name of file>
+2. Run the analysis `PtPlot` or `MULTIPLOT`:
+   ```bash
+   rivet -a <analysis name> --pwd <file name to be analysed>
+
+To generate comparing plots:
+1. Rename the yoda files for the original events from Graeme to `OriginalData.yoda`, and then re-run the analysis on the generated dataset. 
+2. Based on the analysis used, the `plotting.py` file will need to be changed to reflect the proper histogram name.
+3. Run the plotter using:
+   ```bash
+   python3 plotting.py
