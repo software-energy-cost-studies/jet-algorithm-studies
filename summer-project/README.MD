@@ -1,0 +1,42 @@
+# Tackling the Energy Cost of High Energy Physics
+
+## Introduction
+This repository contains the code for the summer project titled "Tackling the Energy Cost of High Energy Physics," supervised by Prof Caterina Doglioni. The project aims to address the energy consumption challenges in high-energy physics.
+
+## Code Description
+The code in this repository is based on the following components:
+
+1. **antikt-python**: This codebase, developed by Graeme A. Stewart, is available at [https://github.com/graeme-a-stewart/antikt-python](https://github.com/graeme-a-stewart/antikt-python). It provides the necessary tools for generating Pythia events.
+
+2. **excitedquarks-rivet**: The rivet analysis code for excited quarks, developed by MCR EXCITED QUARKS, is utilized in this project. The code repository can be found at [https://github.com/DarkJets-hep/excitedquarks-rivet](https://github.com/DarkJets-hep/excitedquarks-rivet).
+
+## Dataset
+For comparison purposes, this project employs Graeme Stewart's original dataset. The dataset used for analysis can be accessed from the following location: [link to Graeme's original dataset](https://example.com/original-dataset).
+
+## Prerequisites
+To run this project, you need to have the `hepstore/rivet-pythia` Singularity container installed on your system. This container provides the required environment for executing the code.
+
+To install Singularity and the `hepstore/rivet-pythia` container, please follow the instructions provided in their respective documentation:
+
+- Singularity: [https://sylabs.io/guides/3.7/user-guide/](https://sylabs.io/guides/3.7/user-guide/)
+- hepstore/rivet-pythia container: [https://hub.docker.com/r/hepstore/rivet-pythia)
+
+## Installation
+To set up the project, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/software-energy-cost-studies/jet-algorithm-studies.git
+2. Enter this directory:
+   ```bash
+   cd summer-project
+2. Start the '**hepstore/rivet-pythia**' Singularity container:
+   ```bash
+   singularity run rivet-pythia*.sif
+
+##Usage
+Detailed instructions on how to use the code can be found in the respective repositories mentioned above. Ensure that the '**hepstore/rivet-pythia**' Singularity container is running before executing the code.
+
+To install use:
+   ```bash
+   singularity pull docker://hepstore/rivet-pythia
