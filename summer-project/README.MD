@@ -30,12 +30,12 @@ To set up the project, follow these steps:
 2. Enter this directory:
    ```bash
    cd summer-project
-2. Start the '**hepstore/rivet-pythia**' Singularity container:
+2. Start the `hepstore/rivet-pythia` Singularity container:
    ```bash
    singularity run rivet-pythia*.sif
 
-##Usage
-Detailed instructions on how to use the code can be found in the respective repositories mentioned above. Ensure that the '**hepstore/rivet-pythia**' Singularity container is running before executing the code.
+## Usage
+Detailed instructions on how to use the code can be found in the respective repositories mentioned above. Ensure that the `hepstore/rivet-pythia` Singularity container is running before executing the code.
 
 To install use:
    ```bash
