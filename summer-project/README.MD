@@ -8,7 +8,7 @@ The code in this repository is based on the following components:
 
 1. **antikt-python**: This codebase, developed by Graeme A. Stewart, is available at [https://github.com/graeme-a-stewart/antikt-python](https://github.com/graeme-a-stewart/antikt-python). It provides the necessary tools for generating Pythia events.
 
-2. **excitedquarks-rivet**: The rivet analysis code for excited quarks, developed by MCR EXCITED QUARKS, is utilized in this project. The code repository can be found at [https://github.com/DarkJets-hep/excitedquarks-rivet](https://github.com/DarkJets-hep/excitedquarks-rivet).
+2. **rivet jet analysis**: The base rivet analysis code utilized in this project was provided by Dr. Sukanya Sinha (The University of Manchester).
 
 ## Dataset
 For comparison purposes, this project employs Graeme Stewart's original dataset. The dataset used for analysis can be accessed from the following location: [link to Graeme's original dataset](https://github.com/graeme-a-stewart/antikt-python/tree/main/data).
@@ -52,12 +52,12 @@ To generate events:
 This will generate a new file named `events.hepmc3`.
 
 To use the analysis code:
-1. Compile using rivet, there are 2 options: `ptanalysor.cc` for only pt-plots or `analysor.cc` for multiple plots:
+1. Compile using rivet:
    ```bash
-   rivet-build <name of file>
-2. Run the analysis `PtPlot` or `MULTIPLOT`:
+   rivet-build ptanalyser.cc
+2. Run the analysis `PtPlot`:
    ```bash
-   rivet -a <analysis name> --pwd <file name to be analysed>
+   rivet -a PtPlot --pwd <file name to be analysed>
 
 To generate comparing plots:
 1. Rename the yoda files for the original events from Graeme to `OriginalData.yoda`, and then re-run the analysis on the generated dataset. 
