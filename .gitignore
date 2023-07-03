@@ -32,4 +32,7 @@
 *.app
 
 *.hepmc3
-*.csv*.symlink
+*.csv
+*.symlink
+*/@
+
