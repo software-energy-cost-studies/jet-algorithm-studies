@@ -35,4 +35,6 @@
 *.csv
 *.symlink
 */@
+*.png
 
+data2
