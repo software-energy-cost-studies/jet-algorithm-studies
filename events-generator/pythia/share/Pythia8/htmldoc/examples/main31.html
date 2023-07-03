@@ -1,0 +1,120 @@
+<html><head><title>main31</title>
+<link rel="stylesheet" type="text/css" href="../pythia.css"/>
+<link rel="shortcut icon" href="../pythia32.gif"/></head><body><h2>main31</h2>
+Back to <a href="../ExampleKeywords.html" target="page">index.</a>
+<pre><code class="language-c++">
+// main31.cc is a part of the PYTHIA event generator.
+// Copyright (C) 2023 Torbjorn Sjostrand.
+// PYTHIA is licenced under the GNU GPL v2 or later, see COPYING for details.
+// Please respect the MCnet Guidelines, see GUIDELINES for details.
+
+// Keywords:
+//            <a href="../ExampleKeywords.html#matching">Matching</a>
+//            <a href="../ExampleKeywords.html#merging">Merging</a>
+//            <a href="../ExampleKeywords.html#powheg">Powheg</a>
+
+// Example how to perform matching with POWHEG-BOX events,
+// based on the code found in include/Pythia8Plugins/PowhegHooks.h.
+
+#include &quot;Pythia8/Pythia.h&quot;
+#include &quot;Pythia8Plugins/PowhegHooks.h&quot;
+using namespace Pythia8;
+
+//==========================================================================
+
+int main() {
+
+  // Generator
+  Pythia pythia;
+
+  // Load configuration file
+  pythia.readFile(&quot;main31.cmnd&quot;);
+
+  // Read in main settings.
+  int nEvent      = pythia.settings.mode(&quot;Main:numberOfEvents&quot;);
+  int nError      = pythia.settings.mode(&quot;Main:timesAllowErrors&quot;);
+  // Read in key POWHEG matching settings.
+  int vetoMode    = pythia.settings.mode(&quot;POWHEG:veto&quot;);
+  int MPIvetoMode = pythia.settings.mode(&quot;POWHEG:MPIveto&quot;);
+  bool loadHooks  = (vetoMode &gt; 0 || MPIvetoMode &gt; 0);
+  // Read in shower settings.
+  int showerModel = pythia.settings.mode(&quot;PartonShowers:model&quot;);
+
+  // Add in user hooks for shower vetoing.
+  shared_ptr&lt;PowhegHooks&gt; powhegHooks;
+  if (loadHooks) {
+
+    // Set showers to start at the kinematical limit.
+    if (vetoMode &gt; 0) {
+      if (showerModel == 1 || showerModel == 3) {
+        // Pythia and Dire have separate settings for ISR and FSR.
+        pythia.readString(&quot;SpaceShower:pTmaxMatch = 2&quot;);
+        pythia.readString(&quot;TimeShower:pTmaxMatch = 2&quot;);
+      } else if (showerModel == 2) {
+        // Vincia only has one common setting for both ISR and FSR.
+        pythia.readString(&quot;Vincia:pTmaxMatch = 2&quot;);
+      }
+    }
+
+    // Set MPI to start at the kinematical limit.
+    if (MPIvetoMode &gt; 0) {
+      pythia.readString(&quot;MultipartonInteractions:pTmaxMatch = 2&quot;);
+    }
+
+    powhegHooks = make_shared&lt;PowhegHooks&gt;();
+    pythia.setUserHooksPtr((UserHooksPtr)powhegHooks);
+  }
+
+  // Initialise and list settings
+  pythia.init();
+
+  // Counters for number of ISR/FSR emissions vetoed
+  unsigned long int nISRveto = 0, nFSRveto = 0;
+
+  // Begin event loop; generate until nEvent events are processed
+  // or end of LHEF file
+  int iEvent = 0, iError = 0;
+  while (true) {
+
+    // Generate the next event
+    if (!pythia.next()) {
+
+      // If failure because reached end of file then exit event loop
+      if (pythia.info.atEndOfFile()) break;
+
+      // Otherwise count event failure and continue/exit as necessary
+      cout &lt;&lt; &quot;Warning: event &quot; &lt;&lt; iEvent &lt;&lt; &quot; failed&quot; &lt;&lt; endl;
+      if (++iError == nError) {
+        cout &lt;&lt; &quot;Error: too many event failures... exiting&quot; &lt;&lt; endl;
+        break;
+      }
+
+      continue;
+    }
+
+    /*
+     * Process dependent checks and analysis may be inserted here
+     */
+
+    // Update ISR/FSR veto counters
+    if (loadHooks) {
+      nISRveto += powhegHooks-&gt;getNISRveto();
+      nFSRveto += powhegHooks-&gt;getNFSRveto();
+    }
+
+    // If nEvent is set, check and exit loop if necessary
+    ++iEvent;
+    if (nEvent != 0 &amp;&amp; iEvent == nEvent) break;
+
+  } // End of event loop.
+
+  // Statistics, histograms and veto information
+  pythia.stat();
+  cout &lt;&lt; &quot;Number of ISR emissions vetoed: &quot; &lt;&lt; nISRveto &lt;&lt; endl;
+  cout &lt;&lt; &quot;Number of FSR emissions vetoed: &quot; &lt;&lt; nFSRveto &lt;&lt; endl;
+  cout &lt;&lt; endl;
+
+  // Done.
+  return 0;
+}
+</code></pre></body></html>
