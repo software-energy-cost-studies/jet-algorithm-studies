@@ -63,16 +63,16 @@ To use the analysis code:
 
 ---
 ## For the Final Analysis only
-To generate multiple events files from 13TeV to 100TeV:
+To generate multiple events files from 13TeV to 100TeV (remove the **()** before running):
 1. Compile the multi_generator(_parallel).cc where parallel is for multi-threaded compilation:
    ```bash
    g++ -o multi-generator(-parallel) multi_generator(_parallel).cc -L./pythia/include -lpythia8 -lHepMC3 (-fopenmp)
    ```
-remove the **()** before running. <br />
 2. Run the generator:
    ```bash
    ./multi-generator(-parallel)
-   
+   ```
+
 **Tip**: The files will be around 100+ GB. Store them in a storage space which will be enough. If running on lxplus, ensure storage is on EOSBox.
 ---
 
