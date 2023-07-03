@@ -6,11 +6,11 @@ There is a pure Python implementation and one using `numpy` plus `numba`.
 
 This code is used in the CHEP 2023 Paper, *Polyglot Jet Finding*.
 
-This code was modified by adding [CodeCarbon Package](https://github.com/mlco2/codecarbon) to measure the power usage of the antikt algorithm in basic mode and N2 mode by Akshat Gupta (The University Of Manchester).
+This code was modified by adding [CodeCarbon Package](https://github.com/mlco2/codecarbon) to measure the power usage of the antikt algorithm in basic mode and N2 mode by Akshat Gupta (The University of Manchester).
 
 ## Copyright
 
-All files are Copyright (C) CERN, 2023 and provided under the Apache-2 license.
+All files are Copyright (C) CERN & The University of Manchester, 2023 and provided under the Apache-2 license.
 
 ## Acknowledgements
 
