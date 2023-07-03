@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+*.hepmc3
+*.csv*.symlink
