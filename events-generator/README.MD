@@ -68,7 +68,7 @@ To generate multiple events files from 13TeV to 100TeV:
    ```bash
    g++ -o multi-generator(-parallel) multi_generator(_parallel).cc -L./pythia/include -lpythia8 -lHepMC3 (-fopenmp)
    ```
-remove the **()** before running
+remove the **()** before running. <br />
 2. Run the generator
    ```bash
    ./multi-generator(-parallel)
