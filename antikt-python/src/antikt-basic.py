@@ -63,21 +63,23 @@ def main():
     directory = '/mnt/d/summer-project/'  # Use the current directory
 
     hepmc_files = [filename for filename in os.listdir(directory) if filename.endswith('.hepmc3')]
-    for file in hepmc_files:
+    #for file in hepmc_files: #modified for specific files
+    for i in [13, 14]: #modified to specific files
+        file =  str(i) + '_10000.hepmc3' # modified
+        print(file)
         filenametemp = os.path.splitext(file)[0]  # Remove the file extension
         info = filenametemp.split('_')
         com = info[0]
         maxevents = info[1]
         if (args.maxevents != 1 and args.maxevents < maxevents):
             maxevents = args.maxevents
-        if (int(maxevents) != 10000 and int(maxevents) != 100000):
-            filename = "results/"+filenametemp + "_carbon.csv"
-            output = "results/"+filenametemp + "_benchmark.txt"
-            logput = "results/"+filenametemp + "_log.txt"
-            jetout = "results/"+filenametemp + "_jets.txt"
-            #logout = logging.FileHandler(logput, mode="w")
-            #logging.getLogger("jetfinder").addHandler(logout)
-            benchmark_func(0.4, filename, file, output, args, int(maxevents), jetout)
+        filename = "results/"+filenametemp + "_carbon.csv"
+        output = "results/"+filenametemp + "_benchmark.txt"
+        logput = "results/"+filenametemp + "_log.txt"
+        jetout = "results/"+filenametemp + "_jets.txt"
+        #logout = logging.FileHandler(logput, mode="w")
+        #logging.getLogger("jetfinder").addHandler(logout)
+        benchmark_func(0.4, filename, file, output, args, int(maxevents), jetout)
         
 def benchmark_func(cone_radius, filename, eventfile, output, args, maxevents, jetout):
     # Switch between implenentations here
@@ -105,8 +107,8 @@ def benchmark_func(cone_radius, filename, eventfile, output, args, maxevents, je
         print("Warm up run with first event to jit compile code")
         basicjetfinder(deepcopy(orignal_events[0]), Rparam=cone_radius, ptmin=0.5)
 
-    #fjet = open(jetout, "w")
-    #print("NFinaljets", file=fjet)
+    fjet = open(jetout, "w")
+    print("NFinaljets", file=fjet)
 
     for itrial in range(1, args.trials + 1):
         if args.trials > 1:
@@ -120,7 +122,7 @@ def benchmark_func(cone_radius, filename, eventfile, output, args, maxevents, je
             logger.info(f"Event {ievt}, found {len(antikt_jets)} jets")
             for ijet, jet in enumerate(antikt_jets):
                 logger.info(f"{ijet}, {jet.rap}, {jet.phi}, {jet.pt}")
-            #print(len(antikt_jets), file=fjet)
+            print(len(antikt_jets), file=fjet)
         end = time.monotonic_ns() / 1000.0
         benchmark.runtimes.append(end - start)
         print(f"Trial {itrial}. Processed {len(events)} events in {end-start:,.2f} us")

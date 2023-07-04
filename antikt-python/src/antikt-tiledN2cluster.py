@@ -61,21 +61,22 @@ def main():
     directory = '/mnt/d/summer-project/'  # Use the current directory
 
     hepmc_files = [filename for filename in os.listdir(directory) if filename.endswith('.hepmc3')]
-    for file in hepmc_files:
+    #for file in hepmc_files:
+    for i in [13]:
+        file = str(i) + '_100000.hepmc3'
         filenametemp = os.path.splitext(file)[0]  # Remove the file extension
         info = filenametemp.split('_')
         com = info[0]
         maxevents = info[1]
         if (args.maxevents != 1 and args.maxevents < maxevents):
             maxevents = args.maxevents
-        if (int(maxevents) != 10000 and int(maxevents) != 100000):
-            filename = "results/"+ filenametemp + "_tiled_carbon.csv"
-            output = "results/"+filenametemp + "_tiled_benchmark.txt"
-            logput = "results/"+filenametemp + "_tiled_log.txt"
-            jetout = "results/"+filenametemp + "_tiled_jets.txt"
-            logout = logging.FileHandler(logput, mode="w")
-            logging.getLogger("jetfinder").addHandler(logout)
-            benchmark_func(0.4, filename, file, output, args, int(maxevents), jetout)
+        filename = "results/"+ filenametemp + "_tiled_carbon.csv"
+        output = "results/"+filenametemp + "_tiled_benchmark.txt"
+        logput = "results/"+filenametemp + "_tiled_log.txt"
+        jetout = "results/"+filenametemp + "_tiled_jets.txt"
+        #logout = logging.FileHandler(logput, mode="w")
+        #logging.getLogger("jetfinder").addHandler(logout)
+        benchmark_func(0.4, filename, file, output, args, int(maxevents), jetout)
             
 def benchmark_func(cone_radius, filename, eventfile, output, args, maxevents, jetout):
     tracker = OfflineEmissionsTracker(save_to_file = True, country_iso_code="GBR", output_file=filename, tracking_mode="process") #GBR IS FOR UNITED KINGDOM 

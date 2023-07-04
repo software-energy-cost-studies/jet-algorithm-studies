@@ -1,0 +1,42 @@
+BEGIN YODA_COUNTER_V2 /_EVTCOUNT
+Path: /_EVTCOUNT
+ScaledBy: 1.00000000000000000e+00
+Title: 
+Type: Counter
+---
+# sumW	 sumW2	 numEntries
+1.000000e+02	1.000000e+02	1.000000e+02
+END YODA_COUNTER_V2
+
+
+BEGIN YODA_SCATTER1D_V2 /_XSEC
+ErrorBreakdown: {0: {"": {up: 40387021.100000001, dn: 40387021.100000001}}}
+Path: /_XSEC
+Title: 
+Type: Scatter1D
+---
+# xval	 xerr-	 xerr+	
+7.028579e+08	4.038702e+07	4.038702e+07
+END YODA_SCATTER1D_V2
+
+
+BEGIN YODA_COUNTER_V2 /RAW/_EVTCOUNT
+Path: /RAW/_EVTCOUNT
+Title: 
+Type: Counter
+---
+# sumW	 sumW2	 numEntries
+1.000000e+02	1.000000e+02	1.000000e+02
+END YODA_COUNTER_V2
+
+
+BEGIN YODA_SCATTER1D_V2 /RAW/_XSEC
+ErrorBreakdown: {0: {"": {up: 40387021.100000001, dn: 40387021.100000001}}}
+Path: /RAW/_XSEC
+Title: 
+Type: Scatter1D
+---
+# xval	 xerr-	 xerr+	
+7.028579e+08	4.038702e+07	4.038702e+07
+END YODA_SCATTER1D_V2
+
