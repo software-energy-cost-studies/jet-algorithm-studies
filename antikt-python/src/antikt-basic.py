@@ -64,8 +64,8 @@ def main():
 
     hepmc_files = [filename for filename in os.listdir(directory) if filename.endswith('.hepmc3')]
     #for file in hepmc_files: #modified for specific files
-    for i in [13, 14]: #modified to specific files
-        file =  str(i) + '_10000.hepmc3' # modified
+    for i in [13, 14, 50, 100]: #modified to specific files
+        file =  str(i) + '_1000.hepmc3' # modified
         print(file)
         filenametemp = os.path.splitext(file)[0]  # Remove the file extension
         info = filenametemp.split('_')
@@ -83,7 +83,7 @@ def main():
         
 def benchmark_func(cone_radius, filename, eventfile, output, args, maxevents, jetout):
     # Switch between implenentations here
-    tracker = OfflineEmissionsTracker(save_to_file = True, country_iso_code="GBR", output_file=filename, tracking_mode="process") #GBR IS FOR UNITED KINGDOM 
+    tracker = OfflineEmissionsTracker(save_to_file = True, country_iso_code="GBR", output_file=filename, tracking_mode="machine") #GBR IS FOR UNITED KINGDOM 
     tracker.start()
     if args.numba:
         try:
